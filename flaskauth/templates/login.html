@@ -1,0 +1,59 @@
+{% extends "base-user.html" %}
+
+{% block page_heading %} Login to the Flask web-application {% endblock page_heading %}
+
+{% block content %}
+
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+
+    <div class="form-label-group form-group">
+      {% if form.email.errors %}
+        {{ form.email(class="form-control is-invalid", placeholder="Email address") }}
+        <div class="invalid-feedback">
+          {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.email(class="form-control", placeholder="Email address") }}
+      {% endif %}
+
+      {{ form.email.label }}
+    </div>
+
+    <div class="form-label-group form-group">
+      {% if form.password.errors %}
+        {{ form.password(class="form-control is-invalid", placeholder="Password") }}
+        <div class="invalid-feedback">
+          {% for error in form.password.errors %}
+              <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.password(class="form-control", placeholder="Password") }}
+      {% endif %}
+
+      {{ form.password.label }}
+    </div>
+
+    <div class="form-check custom-control custom-checkbox mb-3">
+      {{ form.remember(class="custom-control-input") }}
+      {{ form.remember.label(class="custom-control-label mx-1") }}
+    </div>
+
+    <div class="form-group text-center">
+      {{ form.submit(class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2") }}
+    </div>
+
+    <div class="text-center mt-3 text-muted small">
+      Forgot password? <a class="ml-2" href="{{ url_for('passreset_request') }}">Click here</a>
+    </div>
+
+    <div class="text-center mt-2 text-muted small">
+      New user? <a class="ml-2" href="{{ url_for('register') }}">Register here</a>
+    </div>
+
+  </form>
+
+{% endblock content %}

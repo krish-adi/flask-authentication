@@ -1,0 +1,21 @@
+{% extends "base-user.html" %}
+
+{% block page_heading %} Error: {{enum}} {% endblock page_heading %}
+
+{% block content %}
+
+<div class="text-center">
+    <h4>{{message}}</h4>
+</div>
+
+{% if current_user.is_authenticated %}
+<div class="text-center mt-5 mb-3">
+    <span class="fs-5 mx-2">Go to account page: </span> <a class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2" href="{{ url_for('account') }}" role="button">Account</a>
+</div>
+{% else %}
+<div class="text-center mt-5 mb-3">
+    <span class="fs-5 mx-2">Go to home page: </span> <a class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2" href="{{ url_for('home') }}" role="button">Home</a>
+</div>
+{% endif %}
+
+{% endblock content %}

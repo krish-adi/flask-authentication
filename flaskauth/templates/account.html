@@ -1,0 +1,51 @@
+{% extends "base-user.html" %}
+
+{% block page_heading %} Account of {{ current_user.username }} {% endblock page_heading %}
+
+{% block content %}
+
+<form method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <div class="form-label-group form-group">
+        {% if form.username.errors %}
+        {{ form.username(class="form-control is-invalid", placeholder="Username") }}
+        <div class="invalid-feedback">
+            {% for error in form.username.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.username(class="form-control", placeholder="Username") }}
+        {% endif %}
+
+        {{ form.username.label }}
+    </div>
+
+    <div class="form-label-group form-group">
+        {% if form.email.errors %}
+        {{ form.email(class="form-control is-invalid", placeholder="Email address") }}
+        <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.email(class="form-control", placeholder="Email address") }}
+        {% endif %}
+
+        {{ form.email.label }}
+    </div>
+
+    <div class="text-center form-group">
+        {{ form.submit(class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2") }}
+    </div>
+
+</form>
+
+<div class="text-center form-group mt-5">
+    <a class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2 mx-3" href="{{ url_for('home') }}" role="button">Home</a>
+    <a class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2 mx-3" href="{{ url_for('logout') }}" role="button">Logout</a>
+</div>
+
+{% endblock content %}

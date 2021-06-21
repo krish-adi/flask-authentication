@@ -1,0 +1,23 @@
+{% extends "base-user.html" %}
+
+{% block page_heading %} Welcome to the Flask web-application {% endblock page_heading %}
+
+{% block content %}
+
+  {% if current_user.is_authenticated %}
+    <div class="text-center mt-5 mb-3">
+      <span class="fs-5 mx-2">You are currently logged in.</span> <a class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2" href="{{ url_for('account') }}" role="button">Account</a>
+    </div>
+    <div class="text-center my-3">
+      <span class="fs-5 mx-2">Do you want to log out? </span> <a class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2" href="{{ url_for('logout') }}" role="button">Logout</a>
+    </div>
+  {% else %}
+    <div class="text-center mt-5 mb-3">
+      <span class="fs-5 mx-2">If you are an existing user: </span> <a class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2" href="{{ url_for('login') }}" role="button">Login</a>
+    </div>
+    <div class="text-center">
+      <span class="fs-5 mx-2">If you are a new user: </span> <a class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2" href="{{ url_for('register') }}" role="button">Register</a>
+    </div>
+  {% endif %}
+
+{% endblock content %}

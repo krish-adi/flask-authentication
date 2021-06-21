@@ -1,0 +1,46 @@
+{% extends "base-user.html" %}
+
+{% block page_heading %} Login to the Flask web-application {% endblock page_heading %}
+
+{% block content %}
+
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+
+    <div class="form-label-group form-group">
+      {% if form.password.errors %}
+        {{ form.password(class="form-control is-invalid", placeholder="Password") }}
+        <div class="invalid-feedback">
+          {% for error in form.password.errors %}
+              <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.password(class="form-control", placeholder="Password") }}
+      {% endif %}
+
+      {{ form.password.label }}
+    </div>
+
+    <div class="form-label-group form-group">
+      {% if form.confirm_password.errors %}
+        {{ form.confirm_password(class="form-control is-invalid", placeholder="Confirm password") }}
+        <div class="invalid-feedback">
+          {% for error in form.confirm_password.errors %}
+              <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.confirm_password(class="form-control", placeholder="Confirm password") }}
+      {% endif %}
+
+      {{ form.confirm_password.label }}
+    </div>
+
+    <div class="form-group text-center">
+      {{ form.submit(class="btn btn-lg btn-info btn-block btn-user text-uppercase font-weight-bold mb-2") }}
+    </div>
+
+  </form>
+
+{% endblock content %}
